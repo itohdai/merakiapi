@@ -19,6 +19,6 @@ def main():
         # 結果の出力
         print(res.json())
 
-
-main()
+if __name__ == "__main__":
+    main()
 
