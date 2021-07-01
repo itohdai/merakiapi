@@ -5,7 +5,7 @@ def main():
     print('test')
     endPoint = '/api/v0/organizations'
 
-    api = merakiapi(False)
+    api = api.merakiapi(False)
     res = api.get('/api/v0/organizations', {})
     if res.status_code != 200:
         # エラーだった場合
