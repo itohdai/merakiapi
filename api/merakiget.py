@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import sys
-from merakiapi import mapi
+from . import merakiapi
 
 def main():
     print('test')
     endPoint = '/api/v0/organizations'
 
-    api = mapi(mapi.isProduction)
+    api = merakiapi(merakiapi.isProduction)
     res = api.get('/api/v0/organizations', {})
     if res.status_code != 200:
         # エラーだった場合
