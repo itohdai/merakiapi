@@ -3,7 +3,7 @@
 import requests
 import json
 
-class mapi:
+class merakiapi:
     isStage = True
     isProduction = False
 
