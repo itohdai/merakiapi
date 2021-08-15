@@ -116,13 +116,9 @@ def main():
         orgcol.delete_many({})
         orgcol.insert_many(res.json())
 
-        sys.exit(1)
-
-        orgs = res.json()
-
-        for org in orgs:
+        for org in orgcol.find():
             print(org['id'])
-            res2 = mapi.get('/api/v1/organizations/' + org['id'] + '/appliance/security/events', {})
+            res2 = mapi.get('/api/v1/organizations/' + str(org['id']) + '/appliance/security/events', {})
             if res2.status_code == 200:
                 # 結果の出力
                 print(res2.json())
