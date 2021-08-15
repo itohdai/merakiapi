@@ -114,7 +114,7 @@ def main():
         print('orgcolname:' + orgcolname)
         orgcol = db[orgcolname]
         orgcol.delete_many({})
-        #orgcol.insert_many(res.json())
+        orgcol.insert_many(res.json())
 
         sys.exit(1)
 
