@@ -96,7 +96,7 @@ def main():
     print(col.find_one())
     print('====== 3============ ======')
     for doc in col.find():
-        print(doc['customerid'])
+        print(doc['Name'])
         endPoint = '/api/v0/organizations'
         mapi = merakiapi(False, doc['APIKey'])
         res = mapi.get('/api/v0/organizations', {})
@@ -109,31 +109,39 @@ def main():
         else:
             # 結果の出力
             print(res.json())
+        
+        orgcol = db['organizations_' + doc['customerid']]
+        orgcol.deleteMany()
+        orgcol.insertMany(res.json())
+
+        sys.exit(1)
+
+        orgs = res.json()
+
+        for org in orgs:
+            print(org['id'])
+            res2 = mapi.get('/api/v1/organizations/' + org['id'] + '/appliance/security/events', {})
+            if res2.status_code == 200:
+                # 結果の出力
+                print(res2.json())
+            elif res2.status_code == 403:
+                print('No Data : organization:' + org['id'] + ' status:' + str(res2.status_code))
+                print(res2.json())
+            elif res2.status_code == 404:
+                print('Forbidden : organization:' + org['id'] + ' status:' + str(res2.status_code))
+                print(res2.json())
+            else:
+                # エラーだった場合
+                print('Error Code:  organization:' + org['id'] + ' status:' + str(res2.status_code))
+                print(res2.json())
+                #sys.exit(1)
 
     print('====== 4============ ======')
-    sys.exit(1)
+    
 
 
 
 
-    orgs = res.json()
-    for org in orgs:
-        print(org['id'])
-        res2 = mapi.get('/api/v1/organizations/' + org['id'] + '/appliance/security/events', {})
-        if res2.status_code == 200:
-            # 結果の出力
-            print(res2.json())
-        elif res2.status_code == 403:
-            print('No Data : organization:' + org['id'] + ' status:' + str(res2.status_code))
-            print(res2.json())
-        elif res2.status_code == 404:
-            print('Forbidden : organization:' + org['id'] + ' status:' + str(res2.status_code))
-            print(res2.json())
-        else:
-            # エラーだった場合
-            print('Error Code:  organization:' + org['id'] + ' status:' + str(res2.status_code))
-            print(res2.json())
-            #sys.exit(1)
 
 if __name__ == "__main__":
     main()
