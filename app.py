@@ -82,7 +82,7 @@ def main():
 
     print(mongoURL)
     print(mongoURLLabel)
-    print('====== ============ ======')
+    print('====== 1============ ======')
 
     client = MongoClient(mongoURL)
     print(client[mongoDatabase])
@@ -91,12 +91,13 @@ def main():
     db = client[mongoDatabase]
     for collection_name in db.list_collection_names():
         print(collection_name)
-    print('====== ============ ======')
+    print('====== 2============ ======')
     col = db['customers']
-    
+    print(col.find_one())
+    print('====== 3============ ======')
     for doc in col.find():
         print(doc.customerid)
-    print('====== ============ ======')
+    print('====== 4============ ======')
 
 
     endPoint = '/api/v0/organizations'
