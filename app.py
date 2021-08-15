@@ -82,7 +82,8 @@ def main():
     for collection_name in db.list_collection_names():
         print(collection_name)
     col = db['cusotmers']
-    print(col.find())
+    doc = col.find_one()
+    print(doc)
     print('====== ============ ======')
 
 
