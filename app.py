@@ -113,8 +113,8 @@ def main():
         orgcolname = 'organizations_' + str(doc['customerid'])
         print('orgcolname:' + orgcolname)
         orgcol = db[orgcolname]
-        orgcol.deleteMany()
-        orgcol.insertMany(res.json())
+        orgcol.delete_many()
+        #orgcol.insert_many(res.json())
 
         sys.exit(1)
 
