@@ -75,10 +75,14 @@ def main():
 
     client = MongoClient(mongoURL)
     print(client[mongoDatabase])
+    for database_name in client.database_names():
+        print(database_name)
     print('====== ============ ======')
     db = client[mongoDatabase]
-    col = db['cusotmers']
-    print(col.find_one())
+    for collection_name in db.collection_names():
+        print(collection_name)
+    #col = db['cusotmers']
+    #print(col.find_one())
     print('====== ============ ======')
 
 
