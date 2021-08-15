@@ -122,7 +122,7 @@ def main():
             if res2.status_code == 200:
                 # 結果の出力
                 print(res2.json())
-                eventcolname = 'events_' + str(doc['customerid'] + '_' + str(org['id']))
+                eventcolname = 'events_' + str(doc['customerid']) + '_' + str(org['id'])
                 print('eventcolname:' + eventcolname)
                 evcol = db[eventcolname]
                 evcol.insert_many(res2.json())
