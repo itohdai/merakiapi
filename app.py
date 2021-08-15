@@ -1,6 +1,9 @@
 import sys
 import requests
 import json
+import os
+
+from pymongo import MongoClient
 
 class merakiapi:
     isStage = True
@@ -51,7 +54,19 @@ class merakiapi:
         return response
 
 def main():
-    print('test')
+    print('====== Enviromnents ======')
+    print(os.environ['OPENSHIFT_MONGODB_DB_URL'])
+    print(os.environ['MONGO_URL'])
+    print(os.environ['DATABASE_SERVICE_NAME'])
+    mongoServiceName = os.environ['DATABASE_SERVICE_NAME']
+    print(os.environ[mongoServiceName + '_SERVICE_HOST'])
+    print(os.environ[mongoServiceName + '_SERVICE_PORT'])
+    print(os.environ[mongoServiceName + '_DATABASE'])
+    print(os.environ[mongoServiceName + '_PASSWORD'])
+    print(os.environ[mongoServiceName + '_USER'])
+    print('====== ============ ======')
+
+
     endPoint = '/api/v0/organizations'
 
     mapi = merakiapi(False)
