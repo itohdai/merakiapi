@@ -125,7 +125,8 @@ def main():
                 eventcolname = 'events_' + str(doc['customerid']) + '_' + str(org['id'])
                 print('eventcolname:' + eventcolname)
                 evcol = db[eventcolname]
-                evcol.insert_many(res2.json())
+                if res2.json() != []:
+                    evcol.insert_many(res2.json())
             elif res2.status_code == 403:
                 print('No Data : organization:' + org['id'] + ' status:' + str(res2.status_code))
                 print(res2.json())
