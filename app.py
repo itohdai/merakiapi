@@ -75,8 +75,8 @@ def main():
 
     client = MongoClient(mongoURL)
     print(client[mongoDatabase])
-    for database_name in client.database_names():
-        print(database_name)
+    #for database_name in client.database_names():
+    #    print(database_name)
     print('====== ============ ======')
     db = client[mongoDatabase]
     for collection_name in db.collection_names():
