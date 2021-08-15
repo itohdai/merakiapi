@@ -74,10 +74,9 @@ def main():
     print('====== ============ ======')
 
     client = MongoClient(mongoURL)
-    print(client.test_database)
+    print(client[mongoDatabase])
     print('====== ============ ======')
-    col = client.customers
-    print(col.find_one())
+    db = client[mongoDatabase]
     print('====== ============ ======')
 
 
