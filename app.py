@@ -110,7 +110,9 @@ def main():
             # 結果の出力
             print(res.json())
         
-        orgcol = db['organizations_' + str(doc['customerid'])]
+        orgcolname = 'organizations_' + str(doc['customerid'])
+        print('orgcolname:' + orgcolname)
+        orgcol = db[orgcolname]
         orgcol.deleteMany()
         orgcol.insertMany(res.json())
 
