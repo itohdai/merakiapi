@@ -59,11 +59,18 @@ def main():
     print(os.environ.get('MONGO_URL'))
     print(os.environ.get('DATABASE_SERVICE_NAME'))
     mongoServiceName = os.environ.get('DATABASE_SERVICE_NAME').upper()
-    print(os.environ.get(mongoServiceName + '_SERVICE_HOST'))
-    print(os.environ.get(mongoServiceName + '_SERVICE_PORT'))
-    print(os.environ.get(mongoServiceName + '_DATABASE'))
-    print(os.environ.get(mongoServiceName + '_PASSWORD'))
-    print(os.environ.get(mongoServiceName + '_USER'))
+    mongoHost = os.environ.get(mongoServiceName + '_SERVICE_HOST')
+    mongoPort = os.environ.get(mongoServiceName + '_SERVICE_PORT')
+    mongoDatabase = os.environ.get(mongoServiceName + '_DATABASE')
+    mongoPassword = os.environ.get(mongoServiceName + '_PASSWORD')
+    mongoUser = os.environ.get(mongoServiceName + '_USER')
+    mongoURLLabel = mongoURL = 'mongodb://'
+    mongoURL += mongoUser + ':' + mongoPassword + '@'
+    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase
+    mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase
+
+    print(mongoURL)
+    print(mongoURLLabel)
     print('====== ============ ======')
 
 
