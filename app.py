@@ -73,6 +73,11 @@ def main():
     print(mongoURLLabel)
     print('====== ============ ======')
 
+    client = MongoClient(mongoURL)
+    col = client.customers
+    for data in col.find():
+        print(data)
+
 
     endPoint = '/api/v0/organizations'
 
