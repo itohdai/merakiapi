@@ -77,6 +77,8 @@ def main():
     print(client[mongoDatabase])
     print('====== ============ ======')
     db = client[mongoDatabase]
+    col = db['cusotmers']
+    print(col.find_one())
     print('====== ============ ======')
 
 
