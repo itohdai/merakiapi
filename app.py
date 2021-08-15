@@ -20,6 +20,17 @@ class merakiapi:
             self.apikey = 'b4c81b63e7712da44f79b80cb9164759f5e368ff'
             print("pymeraki production")
 	
+    def __init__(self, isStage: bool, APIKey: str):
+        if isStage:
+            #検証用
+            self.base_url = 'https://api.meraki.com'
+            self.apikey = APIKey
+            print("pymeraki stage")
+        else:
+            self.base_url = 'https://api.meraki.com'
+            self.apikey = APIKey
+            print("pymeraki production")
+	
     def get(self, endpoint: str, param: dict):
         response = requests.get(
             self.base_url + endpoint,
@@ -82,8 +93,9 @@ def main():
         print(collection_name)
     print('====== ============ ======')
     col = db['customers']
-    doc = col.find_one()
-    print(doc)
+    
+    for doc in col.find():
+        print(doc.customerid)
     print('====== ============ ======')
 
 
