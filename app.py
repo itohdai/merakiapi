@@ -77,11 +77,11 @@ def main():
     print(client[mongoDatabase])
     #for database_name in client.database_names():
     #    print(database_name)
-    print('====== ============ ======')
     db = client[mongoDatabase]
     for collection_name in db.list_collection_names():
         print(collection_name)
-    col = db['cusotmers']
+    print('====== ============ ======')
+    col = db['customers']
     doc = col.find_one()
     print(doc)
     print('====== ============ ======')
