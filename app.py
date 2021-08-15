@@ -96,7 +96,7 @@ def main():
     print(col.find_one())
     print('====== 3============ ======')
     for doc in col.find():
-        print(doc.customerid)
+        print(doc['customerid'])
     print('====== 4============ ======')
 
 
