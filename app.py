@@ -9,16 +9,16 @@ class merakiapi:
     isStage = True
     isProduction = False
 
-    def __init__(self, isStage: bool):
-        if isStage:
-            #検証用
-            self.base_url = 'https://api.meraki.com'
-            self.apikey = 'b4c81b63e7712da44f79b80cb9164759f5e368ff'
-            print("pymeraki stage")
-        else:
-            self.base_url = 'https://api.meraki.com'
-            self.apikey = 'b4c81b63e7712da44f79b80cb9164759f5e368ff'
-            print("pymeraki production")
+    #def __init__(self, isStage: bool):
+    #    if isStage:
+    #        #検証用
+    #        self.base_url = 'https://api.meraki.com'
+    #        self.apikey = 'b4c81b63e7712da44f79b80cb9164759f5e368ff'
+    #        print("pymeraki stage")
+    #    else:
+    #        self.base_url = 'https://api.meraki.com'
+    #        self.apikey = 'b4c81b63e7712da44f79b80cb9164759f5e368ff'
+    #        print("pymeraki production")
 	
     def __init__(self, isStage: bool, APIKey: str):
         if isStage:
@@ -97,22 +97,24 @@ def main():
     print('====== 3============ ======')
     for doc in col.find():
         print(doc['customerid'])
+        endPoint = '/api/v0/organizations'
+        mapi = merakiapi(False, doc['APIKey'])
+        res = mapi.get('/api/v0/organizations', {})
+        if res.status_code != 200:
+            # エラーだった場合
+            print('error : ' + str(res.status_code))
+            print('error : ' + str(res.status_code), file=sys.stderr)
+            print(res.json())
+            sys.exit(1)
+        else:
+            # 結果の出力
+            print(res.json())
+
     print('====== 4============ ======')
+    sys.exit(1)
 
 
-    endPoint = '/api/v0/organizations'
 
-    mapi = merakiapi(False)
-    res = mapi.get('/api/v0/organizations', {})
-    if res.status_code != 200:
-        # エラーだった場合
-        print('error : ' + str(res.status_code))
-        print('error : ' + str(res.status_code), file=sys.stderr)
-        print(res.json())
-        sys.exit(1)
-    else:
-        # 結果の出力
-        print(res.json())
 
     orgs = res.json()
     for org in orgs:
