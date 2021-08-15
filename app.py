@@ -74,9 +74,11 @@ def main():
     print('====== ============ ======')
 
     client = MongoClient(mongoURL)
+    print(client.test_database)
+    print('====== ============ ======')
     col = client.customers
-    for data in col.find():
-        print(data)
+    print(col.find_one())
+    print('====== ============ ======')
 
 
     endPoint = '/api/v0/organizations'
