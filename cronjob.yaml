@@ -43,6 +43,16 @@ spec:
                     secretKeyRef:
                       name: meraki-mongo-secret
                       key: database-admin-password
+                - name: MONGODB_SERVICE_HOST
+                  valueFrom:
+                    secretKeyRef:
+                      name: meraki-mongo-secret
+                      key: database-service-host
+                - name: MONGODB_SERVICE_PORT
+                  valueFrom:
+                    secretKeyRef:
+                      name: meraki-mongo-secret
+                      key: database-service-port
               resources: {}
               terminationMessagePath: /dev/termination-log
               terminationMessagePolicy: File
