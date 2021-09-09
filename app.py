@@ -36,7 +36,7 @@ def main():
 
     client = MongoClient(mongoURL,
                         tls=True,
-                        tlsCAFile='./MongoDB-Meraki.ca.crt'
+                        tlsCAFile='./MongoDB-Meraki-log.ca.crt'
                         )
     print(client[mongoDatabase])
 #    for database_name in client.database_names():
