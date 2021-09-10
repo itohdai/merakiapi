@@ -43,6 +43,7 @@ def main():
                         replicaset='replset',
                         username = mongoUser,
                         password = mongoPassword,
+                        authSource=mongoDatabase,
                         tls=True,
                         tlsCAFile='./MongoDB-Meraki-log.ca.crt'
                         )
