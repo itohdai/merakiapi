@@ -34,7 +34,15 @@ def main():
     print(mongoURLLabel)
     print('====== 1============ ======')
 
-    client = MongoClient(mongoURL,
+    client = MongoClient(
+                        host=[
+                             '42c71853-3753-4d37-b700-90b8d71a068f-0.c437f5ab8b3840e99a1a93dffcce078d.private.databases.appdomain.cloud:31524'
+                            ,'42c71853-3753-4d37-b700-90b8d71a068f-1.c437f5ab8b3840e99a1a93dffcce078d.private.databases.appdomain.cloud:31524'
+                            ,'42c71853-3753-4d37-b700-90b8d71a068f-2.c437f5ab8b3840e99a1a93dffcce078d.private.databases.appdomain.cloud:31524'
+                        ],
+                        replicaset='replset',
+                        username = mongoUser,
+                        password = mongoPassword,
                         tls=True,
                         tlsCAFile='./MongoDB-Meraki-log.ca.crt'
                         )
